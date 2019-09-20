@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run nehsus/k8boiler npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "k8boiler"
+  env: "K8boiler-env"
+  bucket_name: "elasticbeanstalk-us-east-2-065455708008"
+  bucket_path: "k8boiler"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+    secure: "$AWS_ACCESS_KEY"
